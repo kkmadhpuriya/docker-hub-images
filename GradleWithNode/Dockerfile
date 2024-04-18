@@ -14,11 +14,7 @@ RUN mkdir -p $NVM_DIR
 # -------------------------------------------------------------------------------------- #
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash \
     && chmod +x $NVM_DIR/nvm.sh
-# && export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" \
-# && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
-# && nvm -v \
-# && nvm install ${NODE_VERSION} \
-# && nvm use ${NODE_VERSION}
+
 
 RUN bash -c "source $NVM_DIR/nvm.sh && \
     nvm install $NODE_VERSION && \
@@ -57,7 +53,10 @@ RUN yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses
 
 # INSTALL YARN
 RUN npm install --global yarn
+# ADD TO PATH
+ENV PATH $NVM_DIR/versions/node/v${NODE_VERSION}/bin/yarn:$PATH
+
 RUN yarn --version
 
 
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]
