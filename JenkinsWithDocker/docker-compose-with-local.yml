@@ -1,0 +1,29 @@
+version: "3"
+services:
+  jenkins-main:
+    build: .
+    container_name: jenkins-main
+    restart: always
+    # ports:
+    #   - "8080:8080"
+    #   - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JENKINS_ADMIN_ID=admin
+      - JENKINS_ADMIN_PASSWORD=Krishna@1640
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jenkins-main.rule=Host(`jenkins2.init.mshosting.in`)"
+      - "traefik.http.routers.jenkins-main.entrypoints=websecure"
+      - "traefik.http.routers.jenkins-main.tls.certresolver=myresolver"
+      - "traefik.port=8081"
+
+volumes:
+  jenkins_home:
+
+networks:
+  proxy:
+    name: traefik_default
+    external: true
