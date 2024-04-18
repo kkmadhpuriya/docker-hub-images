@@ -3,7 +3,7 @@ services:
   gradlw-with-node:
     build: .
     container_name: gradlw-with-node
-    image: kkmadhpuriya/gradle_with_node
+    image: kkmadhpuriya/gradle_with_node:node20
     restart: always
     # ports:
     #   - "8080:8080"

@@ -4,6 +4,9 @@ ENV NODE_VERSION 20.12.2
 ENV NVM_DIR /usr/local/nvm
 ENV ANDROID_HOME /opt/android-sdk
 
+# Set Java heap size
+ENV JAVA_OPTS="-Xmx4g"
+
 # Create NVM directory
 RUN mkdir -p $NVM_DIR
 
@@ -55,7 +58,6 @@ RUN yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses
 RUN npm install --global yarn
 # ADD TO PATH
 ENV PATH $NVM_DIR/versions/node/v${NODE_VERSION}/bin/yarn:$PATH
-
 RUN yarn --version
 
 
