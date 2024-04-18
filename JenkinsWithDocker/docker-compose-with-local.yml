@@ -3,6 +3,7 @@ services:
   jenkins-main:
     build: .
     container_name: jenkins-main
+    image: kkmadhpuriya/jenkins-with-docker
     restart: always
     # ports:
     #   - "8080:8080"
