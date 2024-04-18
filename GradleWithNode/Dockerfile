@@ -5,7 +5,7 @@ ENV NVM_DIR /usr/local/nvm
 ENV ANDROID_HOME /opt/android-sdk
 
 # Set Java heap size
-ENV JAVA_OPTS="-Xmx4g"
+ENV JAVA_OPTS="-Xmx12g"
 
 # Create NVM directory
 RUN mkdir -p $NVM_DIR
