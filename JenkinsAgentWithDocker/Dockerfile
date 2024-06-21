@@ -7,5 +7,3 @@ RUN apt-get update && \
 VOLUME /var/run/docker.sock
 
 RUN usermod -aG docker jenkins
-
-USER jenkins
