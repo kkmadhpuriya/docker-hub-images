@@ -1,11 +1,11 @@
-FROM gradle:jdk17
+FROM gradle:jdk20
 
-ENV NODE_VERSION 20.12.2
-ENV NVM_DIR /usr/local/nvm
-ENV ANDROID_HOME /opt/android-sdk
+ENV NODE_VERSION=20.12.2
+ENV NVM_DIR=/usr/local/nvm
+ENV ANDROID_HOME=/opt/android-sdk
 
 # Set Java heap size
-ENV JAVA_OPTS -Xmx12g
+ENV JAVA_OPTS=-Xmx12g
 
 # Create NVM directory
 RUN mkdir -p $NVM_DIR
@@ -26,9 +26,9 @@ RUN bash -c "source $NVM_DIR/nvm.sh && \
 
 
 # Set node and npm environment variables
-ENV PATH $NVM_DIR/versions/node/v${NODE_VERSION}/bin:$PATH
+ENV PATH=$NVM_DIR/versions/node/v${NODE_VERSION}/bin:$PATH
 # Set PATH to include NVM directory
-ENV PATH $NVM_DIR:$PATH
+ENV PATH=$NVM_DIR:$PATH
 
 # Display Node.js version
 RUN node --version
@@ -57,7 +57,7 @@ RUN yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses
 # INSTALL YARN
 RUN npm install --global yarn
 # ADD TO PATH
-ENV PATH $NVM_DIR/versions/node/v${NODE_VERSION}/bin/yarn:$PATH
+ENV PATH=$NVM_DIR/versions/node/v${NODE_VERSION}/bin/yarn:$PATH
 RUN yarn --version
 
 
